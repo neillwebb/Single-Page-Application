@@ -63,15 +63,14 @@ const $ = function (selector) {
     }
   }
 
-  const hide = function () {
-    for (let i=0; i<nodeList.length; i++) {
-      nodeList[i].style.display = "none";
+  const show = function () {
+    for (let i = 0; i < nodeList.length; i++) {
+      nodeList[i].style.display = '';
     }
   }
-
-  const show = function () {
-    for (let i=0; i<nodeList.length; i++) {
-      nodeList[i].style.display = "";
+  const hide = function () {
+    for (let i = 0; i < nodeList.length; i++) {
+      nodeList[i].style.display = 'none';
     }
   }
 
@@ -86,7 +85,7 @@ const $ = function (selector) {
     prepend: prepend,
     on: on,
     val: val,
-    hide: hide,
-    show: show
+    show: show,
+    hide: hide
   };
 }

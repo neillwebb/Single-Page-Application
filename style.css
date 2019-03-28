@@ -1,3 +1,81 @@
-.hide {
-    display: none;
+* {
+    font-family: Verdana;
+}
+
+body {
+    margin: 0;
+    display: flex;
+}
+
+html, body, nav {
+    height: 100%; /* All three have to be set to height: 100% in order to successfully get the nav to fill from top to bottom  */
+}
+
+nav {
+    background-color: rgb(39, 39, 39);
+    display: block;
+    position: relative;
+    justify-content: center;
+    width: 200px;
+}
+
+#icon {
+    justify-content: center;
+    text-align: center;
+    display: block;
+    margin-top: 150px;
+}
+
+#bookIcon {
+    display: inline-block;
+    width: 100px;
+    -webkit-filter: invert(100%);
+}
+
+
+main {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    float: right;
+    overflow: scroll;
+    padding: 30px;
+}
+
+#navBtns {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%)
+}
+
+#viewBtn, #addBtn, #verifyBtn {
+    display: block;
+    margin: 20px 0;
+    cursor: pointer;
+    color: white;
+}
+
+#verifyForm, #addForm {
+    position: fixed;
+    display: block;
+}
+
+#employeeAddDisplay, #employeeVerifyDisplay {
+    display: block;
+}
+
+input[type=text], select {
+    border-radius: 8px;
+    padding: 1px 20px;
+    height: 30px;
+    margin: 8px 0;
+}
+
+#list {
+    margin: 5px;
+    border: 1px solid black;
+    padding: 10px;
 }

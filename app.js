@@ -1,35 +1,66 @@
-function showUI1(){
-    $("#viewPage").removeClass("hide");
-    $("#addPage").addClass("hide");
-    // addClass hide to all other sections
-};
-function showUI2(){
-    document.getElementsByClassName("ui1").style.display="none";
-    document.getElementsByClassName("ui2").style.display="block";
-    document.getElementsByClassName("ui3").style.display="none";
-    document.getElementsByClassName("ui4").style.display="none";
-    document.getElementsByClassName("ui5").style.display="none";
-};
-function showUI3(){
-    document.getElementsByClassName("ui1").style.display="none";
-    document.getElementsByClassName("ui2").style.display="none";
-    document.getElementsByClassName("ui3").style.display="block";
-    document.getElementsByClassName("ui4").style.display="none";
-    document.getElementsByClassName("ui5").style.display="none";
-};
-function showUI4(){
-    document.getElementsByClassName("ui1").style.display="none";
-    document.getElementsByClassName("ui2").style.display="none";
-    document.getElementsByClassName("ui3").style.display="none";
-    document.getElementsByClassName("ui4").style.display="block";
-    document.getElementsByClassName("ui5").style.display="none";
-};
-function showUI5(){
-    document.getElementsByClassName("ui1").style.display="none";
-    document.getElementsByClassName("ui2").style.display="none";
-    document.getElementsByClassName("ui3").style.display="none";
-    document.getElementsByClassName("ui4").style.display="none";
-    document.getElementsByClassName("ui5").style.display="block";
+(function () {
+    $('section').hide();
+})();
+
+const renderEmployees = function(employeeList, element) {
+    for (var i in employeeList) {
+        const employeeName = employeeList[i].name;
+        const employeeOfficeNum = employeeList[i].officeNum;
+        const employeePhoneNum = employeeList[i].phoneNum;
+
+        $(element).append(`<div id="list"><br>${employeeName}<br>${employeeOfficeNum}<br>${employeePhoneNum}</div>`)
+    }
 }
 
-$("#addBtn").on("click", showUI1);
+const showView = function() {
+    $('section').hide();
+    $('#employeeDisplay').empty();
+    $('#view').show();
+    renderEmployees(employeeList, '#employeeDisplay');
+};
+
+const showAdd = function() {
+    $('section').hide();
+    $('#employeeAddDisplay').empty();
+    $('#add').show();
+    renderEmployees(employeeList, '#employeeAddDisplay');
+};
+
+const showVerify = function() {
+    $('section').hide();
+    $('#employeeVerifyDisplay').empty();
+    $('#verify').show();
+};
+
+const addEmployee = function() {
+    var newEmployee = {};
+    newEmployee.name = $('#employeeName').val()
+    newEmployee.officeNum = $('#officeNumber').val()
+    newEmployee.phoneNum = $('#phoneNumber').val()
+    employeeList.push(newEmployee);
+    $('#employeeAddDisplay').empty();
+    renderEmployees(employeeList, '#employeeAddDisplay');
+};
+
+const verifyEmployee = function() {
+    var em = $('#employeeNameToVerify').val();
+    $("#employeeVerifyDisplay").empty();
+
+    var found = false;
+    for (var i in employeeList) {
+        if(employeeList[i].name.toLowerCase() == em.toLowerCase()) {
+            $('#employeeVerifyDisplay').append("<div>Found: " + employeeList[i].name + "</div>");
+            found = true;
+        }
+    }
+    if (!found) {
+        $("#employeeVerifyDisplay").append("<div>No employee with name: " + em + " exists</div>");
+    }
+};
+
+$('#viewBtn').on('click', showView);
+$('#addBtn').on('click', showAdd);
+$('#verifyBtn').on('click', showVerify);
+
+$('#addEmployeeBtn').on('click', addEmployee);
+$('#verifyEmployeeBtn').on('click', verifyEmployee);
